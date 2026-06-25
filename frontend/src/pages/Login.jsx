@@ -1,21 +1,29 @@
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../store/authStore";
+import { loginUser } from "../services/authService";
 
 
 const Login = () => {
 
 const login = useAuthStore((state) => state.login);
 const navigate = useNavigate();
-const handleLogin = () => {
 
-  console.log("Logging in...");
-  
-  login({
-    id: 1,  
-    name: "Harsh",
-  });
+const handleLogin = async () => {
+  try {
+    const data = await loginUser({
+      username: "emilys",
+      password: "emilyspass",
+    });
 
-  navigate("/");
+    login({
+      user: data,
+      token: data.accessToken,
+    });
+
+    navigate("/");
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 return (

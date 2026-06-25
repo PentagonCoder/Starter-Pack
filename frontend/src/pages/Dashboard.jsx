@@ -1,26 +1,18 @@
-import { useState, useEffect } from "react";
-import api from "../api/axios";
+import { useUsers } from "../hooks/useUsers";
 
 
 function Dashboard() {
 
-  const [users, setUsers] = useState([]);
+  const { users, loading, error } = useUsers();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get("/users");
-        setUsers(response.data.users);
-        console.log("Dashboard: API response =", response.data);
-      } catch (error) {
-        console.error("Dashboard: Error fetching data =", error);
-      }
-    };
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-    fetchData();
-  }, []);
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
-  
   return (
     <>
       <h1>Dashboard Page</h1>
