@@ -5,7 +5,7 @@ const useAuthStore = create(persist((set) => ({
   user: null,
   token: null,
 
-  login: (userData, token) => set({user: userData, token: token}),
+  login: ({user, token}) => set({user, token}),
 
   logout: () => set({user: null, token: null}),
 })));
