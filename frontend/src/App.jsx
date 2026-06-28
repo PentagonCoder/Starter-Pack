@@ -5,6 +5,8 @@ import Members from "./pages/Members";
 import Settings from "./pages/Settings";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Layout from "./components/layout/Layout";
+import WorkspaceDetail from "./pages/WorkspaceDetail";
+import ProjectDetail from "./pages/ProjectDetail";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         }
       >
         <Route path="/" element={<Dashboard />} />
+        <Route path="/workspace/:workspaceId" element={<WorkspaceDetail />} />
+        <Route path="/workspace/:workspaceId/project/:projectId" element={<ProjectDetail />} />
         <Route path="/members" element={<Members />} />
         <Route path="/settings" element={<Settings />} />
       </Route>

@@ -5,10 +5,9 @@ import { loginRequest, fetchProfile, logoutRequest } from "../services/authServi
 
 export function useAuth() {
 
+  const navigate = useNavigate();
   const login = useAuthStore((state) => state.login);
   const logout = useAuthStore((state) => state.logout);
-
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
