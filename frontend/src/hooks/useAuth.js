@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import useAuthStore from "../store/authStore";
-import { loginRequest, fetchProfile, logoutRequest } from "../services/authService";
+import { loginRequest, fetchProfile } from "../services/authService";
 
 export function useAuth() {
 
@@ -10,6 +10,7 @@ export function useAuth() {
   const logout = useAuthStore((state) => state.logout);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const location = useLocation();
 
   const handleLogin = async (data) => {
     setLoading(true);
@@ -19,7 +20,8 @@ export function useAuth() {
       await loginRequest(data);
       const res = await fetchProfile();
       login(res.data);
-      navigate("/");
+      navigate(location.state?.from?.pathname || "/");
+
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
     } finally {
@@ -28,8 +30,7 @@ export function useAuth() {
   };
 
   const handleLogout = async () => {
-    await logoutRequest();
-    logout();
+    await logout();
     navigate("/login");
   };
 

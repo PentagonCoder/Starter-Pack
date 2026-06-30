@@ -1,13 +1,34 @@
-import { Outlet } from 'react-router-dom';
-import Navbar from './Navbar';
-import Sidebar from './Sidebar';
+// import { Outlet } from 'react-router-dom';
+// import Navbar from './Navbar';
+// import Sidebar from './Sidebar';
+
+// function Layout() {
+//   return (
+//     <div>
+//       <Navbar />
+//       <Sidebar />
+//       <Outlet />
+//     </div>
+//   );
+// }
+
+// export default Layout;
+
+// Layout.jsx
+import { Outlet } from "react-router-dom";
+import Navbar from "./Navbar";
+import Sidebar from "./Sidebar";
 
 function Layout() {
   return (
-    <div>
-      <Navbar />
+    <div className="flex">
       <Sidebar />
-      <Outlet />
+      <div className="flex-1 flex flex-col">
+        <Navbar />
+        <main className="flex-1">
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 }

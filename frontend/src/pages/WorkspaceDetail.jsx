@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {getWorkspaceById} from "../services/workspaceService";
 import { useParams } from "react-router-dom";
 import ProjectList from "../components/ProjectList";
+import InviteForm from "../components/InviteForm"
 
 function WorkspaceDetail() {
   const [workspace, setWorkspace] = useState(null);
@@ -42,10 +43,11 @@ function WorkspaceDetail() {
           </li>
         ))}
       </ul>
+
+      <InviteForm workspaceId={workspaceId}/>
     </div>
   );
 }
 
 export default WorkspaceDetail; 
-
 

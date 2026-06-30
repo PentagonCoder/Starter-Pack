@@ -10,15 +10,15 @@ const api = axios.create({
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
-    if (error.response?.status === 401 && !error.config._retry) {
-      error.config._retry = true;
+    const isRefreshCall = error.config?.url?.includes("/refresh-Token");
 
+    if (error.response?.status === 401 && !error.config._retry && !isRefreshCall) {
+      error.config._retry = true;
       try {
         await refreshTokenRequest();
         return api(error.config);
       } catch (refreshError) {
         useAuthStore.getState().logout();
-        window.location.href = "/login";
         return Promise.reject(refreshError);
       }
     }
