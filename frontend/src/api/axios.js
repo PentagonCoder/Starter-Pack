@@ -11,8 +11,9 @@ api.interceptors.response.use(
   (response) => response,
   async (error) => {
     const isRefreshCall = error.config?.url?.includes("/refresh-Token");
+    const isLogoutCall = error.config?.url?.includes("/logout");
 
-    if (error.response?.status === 401 && !error.config._retry && !isRefreshCall) {
+    if (error.response?.status === 401 && !error.config._retry && !isRefreshCall && !isLogoutCall) {
       error.config._retry = true;
       try {
         await refreshTokenRequest();
