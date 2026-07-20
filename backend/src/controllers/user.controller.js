@@ -148,7 +148,7 @@ const logoutUser = asyncHandler(async (req, res) => {
   // Get the user from auth middleware
   const user = req.user;
 
-  const foundUser = await User.findById(user.id);
+  const foundUser = await User.findById(user._id);
   
   if (!foundUser) {
     throw new ApiError(401, "USER NOT AUTHENTICATED");

@@ -3,7 +3,7 @@ import api from "../../api/axios";
 import { fetchProfile } from "../../services/authService";
 
 
-function DashboardUser() {
+function DashboardAdmin() {
   const [userProfile, setUserProfile] = useState(null);
 
   useEffect(() => {
@@ -30,4 +30,4 @@ function DashboardUser() {
   );
 }
 
-export default DashboardUser;
+export default DashboardAdmin;

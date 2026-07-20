@@ -31,7 +31,7 @@ function App() {
         }
       >
         <Route path="/user/dashboard" element={<DashboardUser />} />
-        {/* <Route path="/admin/dashboard" element={<DashboardAdmin />} /> */}
+        <Route path="/admin/dashboard" element={<DashboardAdmin />} />
         <Route path="/members" element={<Members />} />
         <Route path="/settings" element={<Settings />} />
       </Route>
